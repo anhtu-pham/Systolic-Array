@@ -1,15 +1,13 @@
-module Memory #(
-    parameter SIZE = 32,
-    parameter ADDR_W = $clog2(SIZE),
-    parameter DATA_W = 32
-) (
+`include "param.hv"
+
+module Memory (
     input wire clk,
     input wire rd_nwr,
     input wire [ADDR_W-1:0] addr,
     input wire [DATA_W-1:0] data_in, 
-    output wire [DATA_W-1:0] data_out,
+    output wire [DATA_W-1:0] data_out
 );
-    reg [DATA_W-1:0] mem [SIZE];
+    reg [DATA_W-1:0] mem [MEM_SIZE];
     reg [DATA_W-1:0] data;
 
     always @(posedge clk) begin
